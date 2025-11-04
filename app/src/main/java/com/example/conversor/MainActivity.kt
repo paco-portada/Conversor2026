@@ -44,17 +44,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     if (!valor.isEmpty())
                         binding.dolares.setText(Conversion.convertirADolares(valor, RATIO))
                     else
-                            Toast.makeText(this, "Introduce un valor en los Euros", Toast.LENGTH_SHORT).show()
+                        mostrarMensaje("Introduce un valor en los Euros")
                 } else {
                     valor = binding.dolares.text.toString()
                     if (!valor.isEmpty())
                         binding.euros.setText(Conversion.convertirAEuros(valor, RATIO))
                     else
-                        Toast.makeText(this, "Introduce un valor en los Dólares", Toast.LENGTH_SHORT).show()
+                        mostrarMensaje("Introduce un valor en los Dólares")
                 }
             } catch (e: NumberFormatException) {
-                Toast.makeText(this, "Error en la conversión: " + e.message, Toast.LENGTH_SHORT).show()
+                mostrarMensaje("Error en la conversión: " + e.message)
             }
         }
+    }
+
+    private fun mostrarMensaje(texto: String) {
+        Toast.makeText(this, texto, Toast.LENGTH_SHORT).show()
     }
 }
